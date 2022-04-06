@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class Activo
     {
-        public Empleado Empleado { get; set; }
+    
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }

@@ -18,9 +18,11 @@ namespace practicaDepreciacion
     {
         private IActivoServices activoServices;
         private IEmpleadoServices EmpleadoServices;
+        private IRegistroServices registroServices;
         private int Seleccionado = -1;
-        public Form1(IActivoServices ActivoServices,IEmpleadoServices CEmpleadoServices)
+        public Form1(IRegistroServices PregistroServices,IActivoServices ActivoServices,IEmpleadoServices CEmpleadoServices)
         {
+            this.registroServices = PregistroServices;
             this.activoServices = ActivoServices;
             this.EmpleadoServices = CEmpleadoServices;
             InitializeComponent();
@@ -63,6 +65,7 @@ namespace practicaDepreciacion
             {
                 FrmUpdate frmUpdate = new FrmUpdate(Seleccionado,1);
                 frmUpdate.services = activoServices;
+                frmUpdate.registroServices = registroServices;
                 frmUpdate.ShowDialog();
                 FillDgv();
             }
@@ -84,16 +87,6 @@ namespace practicaDepreciacion
             {
                 Activo activo = new Activo
                 {
-                    Empleado = new Empleado()
-                    {
-                        Id = 1,
-                        Apellido="",
-                        Cedula="",
-                        Direccion="",
-                        Email="",
-                        Nombre="",
-                        Telefono="",
-                    },
                     Nombre = txtNombre.Text,
                     Descripcion = txtDescripcion.Text,
                     Valor = double.Parse(txtValor.Text),
@@ -107,7 +100,6 @@ namespace practicaDepreciacion
                 FillDgv();
                 clearForms();
             }
-
 
         }
         private void clearForms()
@@ -243,7 +235,7 @@ namespace practicaDepreciacion
                 FrmMostrar frmMostrar = new FrmMostrar(activoServices.GetById(Seleccionado));
                 frmMostrar.empleadoServices = EmpleadoServices;
                 frmMostrar.activoServices = activoServices;
-
+                frmMostrar.registroServices = registroServices;
                 frmMostrar.ShowDialog();
                 FillDgv();
             }

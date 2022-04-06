@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -67,6 +68,11 @@ namespace Infraestructure.Repository
                             Type type = pinfo.PropertyType;
                             object obj = pinfo.GetValue(t, null);
 
+                            if (type.IsGenericType)
+                            {
+
+                                continue;
+                            }
                             if (!type.IsPrimitive && type.IsClass && type != Type.GetType("System.String"))
                             {
                                 PropertyInfo[] infoClass = obj.GetType().GetProperties();
@@ -82,11 +88,7 @@ namespace Infraestructure.Repository
                                 continue;
                                 //WriteObject(obj, bwData);
                             }
-                            if (type.IsGenericType)
-                            {
-
-                                continue;
-                            }
+                       
 
                             if (pinfo.Name.Equals("Id", StringComparison.CurrentCultureIgnoreCase))
                             {
@@ -138,6 +140,10 @@ namespace Infraestructure.Repository
                             if (type.IsEnum)
                             {
                                 bwData.Write((int)obj);
+                                continue;
+                            }
+                            else
+                            {
                                 continue;
                             }
                             //int nj = (int)obj;
@@ -335,6 +341,10 @@ namespace Infraestructure.Repository
                         else if (type.IsEnum)
                         {
                             pinfo.SetValue(newValue, brData.GetValue<int>(TypeCode.Int32));
+                        }
+                        else
+                        {
+                            continue;
                         }
                     }
                     return newValue;

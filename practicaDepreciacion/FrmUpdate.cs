@@ -16,6 +16,7 @@ namespace practicaDepreciacion
     {
         public IActivoServices services { get; set; }
         public IEmpleadoServices EmpleadoServices { get; set; }
+        public IRegistroServices registroServices { get; set; }
         private int id;
         private Activo Activo;
         private Empleado Empleado;
@@ -70,23 +71,20 @@ namespace practicaDepreciacion
                     };
                 if (TB.Checked == false)
                 {
-                    activo.Empleado = Activo.Empleado;
+                   
                    activo.Estado = Activo.Estado;
                 }
                 else
                 {
-                    activo.Empleado = new Empleado()
-                    {
-                        Apellido = "",
-                        Cedula = "",
-                        Direccion = "",
-                        Email = "",
-                        Id = 0,
-                        Nombre = "",
-                        Telefono = "",
-                        Estado = Domain.Enum.EstadoEmpleado.Inactivo
-                    };
+               
                     activo.Estado = Domain.Enum.EstadoActivo.Disponible;
+                    registroServices.Add(new Registro()
+                    {
+                        Estado = Domain.Enum.EstadoRegistro.Activo,
+                        IdActivo = activo.Id,
+                        IdEmpleado = 0,
+                        TiempoInicial = DateTime.Now.ToFileTime()
+                    });
                 }
                 services.Update(activo);
                 this.Dispose();

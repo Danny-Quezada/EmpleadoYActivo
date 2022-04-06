@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,11 @@ namespace Infraestructure.Repository
         }
 
         public bool Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Activo> FindSpecific(Expression<Func<Activo, bool>> where)
         {
             throw new NotImplementedException();
         }

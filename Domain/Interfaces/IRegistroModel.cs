@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IActivoModel: IModel<Activo>
+    public interface IRegistroModel : IModel<Registro>
     {
-        Activo GetById(int id);
-        void Update(Activo activo);
-        List<Activo> FindSpecific(Expression<Func<Activo, bool>> where);
+        List<Registro> RegistroEspecifico(Expression<Func<Registro,bool>> where);
 
-       
+
     }
 }

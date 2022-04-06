@@ -18,6 +18,7 @@ namespace practicaDepreciacion
     {
         public IEmpleadoServices EmpleadoServices { get; set; }
         public IActivoServices ActivoServices { get; set; }
+        public IRegistroServices registroServices { get; set; }
         private int Seleccionado=-1;
         public FrmEmpleado()
         {
@@ -107,12 +108,7 @@ namespace practicaDepreciacion
             if (Seleccionado > 0)
             {
                 EmpleadoServices.Delete(Seleccionado);
-                foreach(Activo activo in ActivoServices.Read().Where(x => x.Empleado.Id == Seleccionado))
-                {
-                    activo.Empleado.Id = 0;
-                    activo.Estado = EstadoActivo.Disponible;
-                    ActivoServices.Update(activo);
-                }
+               
                 FillDgv();
             }
         }

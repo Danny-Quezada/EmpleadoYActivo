@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace AppCore.IServices
 {
-   public interface IActivoServices: IServices<Activo>
+   public interface IRegistroServices:IServices<Registro>
     {
-        Activo GetById(int id);
-        void Update(Activo activo);
-        List<Activo> FindSpecific(Expression<Func<Activo, bool>> where);
+        List<Registro> RegistroEspecifico(Expression<Func<Registro, bool>> where);
     }
 }

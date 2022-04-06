@@ -1,5 +1,6 @@
 ﻿using AppCore.IServices;
 using Domain.Entities;
+using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace practicaDepreciacion
     {
         public IEmpleadoServices empleadoServices { get; set; }
         public IActivoServices activoServices { get; set; }
+        public IRegistroServices registroServices { get; set; }
        
         private Activo activo;
         private Empleado Empleado;
@@ -85,17 +87,31 @@ namespace practicaDepreciacion
             if (activo != null)
             {
                 Empleado empleado = empleadoServices.GetById(Seleccionado);
-                activo.Empleado.Id = empleado.Id;
+                
                 activo.Estado = Domain.Enum.EstadoActivo.Asignado;
-                activoServices.Update(activo);
+             
+                registroServices.Add(new Registro()
+                {
+                    Estado=Domain.Enum.EstadoRegistro.Activo,
+                    IdActivo=activo.Id,
+                    IdEmpleado=empleado.Id,
+                    TiempoInicial = DateTime.Now.ToFileTime()
+                });
                 btnSeleccionar.Visible = false;
             }
            else if (Empleado != null)
            {
                 Activo activos = activoServices.GetById(Seleccionado);
-                activos.Empleado.Id = Empleado.Id;
-                activos.Estado = Domain.Enum.EstadoActivo.Disponible;
+                    
+                activos.Estado = Domain.Enum.EstadoActivo.Asignado;
                 activoServices.Update(activos);
+                registroServices.Add(new Registro()
+                {
+                    Estado=Domain.Enum.EstadoRegistro.Activo,
+                    IdActivo=activos.Id,
+                    IdEmpleado=Empleado.Id,
+                    TiempoInicial=DateTime.Now.ToFileTime()
+                });
                 btnSeleccionar.Visible = false;
            }
         }

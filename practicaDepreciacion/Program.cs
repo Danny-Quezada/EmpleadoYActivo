@@ -28,10 +28,11 @@ namespace practicaDepreciacion
 
             builder.RegisterType<BinaryEmpleadoRespository>().As<IEmpleadoModel>();
             builder.RegisterType<EmpleadoServices>().As<IEmpleadoServices>();
-
+            builder.RegisterType<BinaryRegistrosRepository>().As<IRegistroModel>();
+            builder.RegisterType<RegistroServices>().As<IRegistroServices>();
           
             var container = builder.Build();
-            Application.Run(new Form1(container.Resolve<IActivoServices>(), container.Resolve<IEmpleadoServices>()));
+            Application.Run(new Form1(container.Resolve<IRegistroServices>(),container.Resolve<IActivoServices>(), container.Resolve<IEmpleadoServices>()));
         }
     }
 }
