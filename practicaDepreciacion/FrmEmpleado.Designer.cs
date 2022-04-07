@@ -53,12 +53,13 @@
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.btnEnviar = new Guna.UI2.WinForms.Guna2Button();
             this.cmsOption = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.actualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarleUnEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.btnEnviar = new Guna.UI2.WinForms.Guna2Button();
+            this.mostrarActivosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.cmsOption.SuspendLayout();
             this.SuspendLayout();
@@ -397,6 +398,49 @@
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             // 
+            // cmsOption
+            // 
+            this.cmsOption.BackColor = System.Drawing.Color.White;
+            this.cmsOption.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsOption.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.actualizarToolStripMenuItem,
+            this.borrarToolStripMenuItem,
+            this.agregarleUnEmpleadoToolStripMenuItem,
+            this.mostrarActivosToolStripMenuItem});
+            this.cmsOption.Name = "cmsOption";
+            this.cmsOption.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.cmsOption.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.cmsOption.RenderStyle.ColorTable = null;
+            this.cmsOption.RenderStyle.RoundedEdges = true;
+            this.cmsOption.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.cmsOption.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.cmsOption.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.cmsOption.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.cmsOption.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.cmsOption.Size = new System.Drawing.Size(196, 114);
+            // 
+            // actualizarToolStripMenuItem
+            // 
+            this.actualizarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
+            this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.actualizarToolStripMenuItem.Text = "Actualizar";
+            // 
+            // borrarToolStripMenuItem
+            // 
+            this.borrarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.borrarToolStripMenuItem.Name = "borrarToolStripMenuItem";
+            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.borrarToolStripMenuItem.Text = "Borrar";
+            this.borrarToolStripMenuItem.Click += new System.EventHandler(this.borrarToolStripMenuItem_Click);
+            // 
+            // agregarleUnEmpleadoToolStripMenuItem
+            // 
+            this.agregarleUnEmpleadoToolStripMenuItem.Name = "agregarleUnEmpleadoToolStripMenuItem";
+            this.agregarleUnEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.agregarleUnEmpleadoToolStripMenuItem.Text = "Agregarles activos fijos";
+            this.agregarleUnEmpleadoToolStripMenuItem.Click += new System.EventHandler(this.agregarleUnEmpleadoToolStripMenuItem_Click);
+            // 
             // guna2Elipse1
             // 
             this.guna2Elipse1.TargetControl = this.dgvEmpleados;
@@ -421,47 +465,12 @@
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.Click += new System.EventHandler(this.BtnEnviar_Click);
             // 
-            // cmsOption
+            // mostrarActivosToolStripMenuItem
             // 
-            this.cmsOption.BackColor = System.Drawing.Color.White;
-            this.cmsOption.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsOption.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.actualizarToolStripMenuItem,
-            this.borrarToolStripMenuItem,
-            this.agregarleUnEmpleadoToolStripMenuItem});
-            this.cmsOption.Name = "cmsOption";
-            this.cmsOption.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.cmsOption.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.cmsOption.RenderStyle.ColorTable = null;
-            this.cmsOption.RenderStyle.RoundedEdges = true;
-            this.cmsOption.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.cmsOption.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.cmsOption.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.cmsOption.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.cmsOption.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.cmsOption.Size = new System.Drawing.Size(196, 92);
-            // 
-            // actualizarToolStripMenuItem
-            // 
-            this.actualizarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
-            this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.actualizarToolStripMenuItem.Text = "Actualizar";
-            // 
-            // borrarToolStripMenuItem
-            // 
-            this.borrarToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.borrarToolStripMenuItem.Name = "borrarToolStripMenuItem";
-            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.borrarToolStripMenuItem.Text = "Borrar";
-            this.borrarToolStripMenuItem.Click += new System.EventHandler(this.borrarToolStripMenuItem_Click);
-            // 
-            // agregarleUnEmpleadoToolStripMenuItem
-            // 
-            this.agregarleUnEmpleadoToolStripMenuItem.Name = "agregarleUnEmpleadoToolStripMenuItem";
-            this.agregarleUnEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.agregarleUnEmpleadoToolStripMenuItem.Text = "Agregarles activos fijos";
-            this.agregarleUnEmpleadoToolStripMenuItem.Click += new System.EventHandler(this.agregarleUnEmpleadoToolStripMenuItem_Click);
+            this.mostrarActivosToolStripMenuItem.Name = "mostrarActivosToolStripMenuItem";
+            this.mostrarActivosToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.mostrarActivosToolStripMenuItem.Text = "Mostrar activos";
+            this.mostrarActivosToolStripMenuItem.Click += new System.EventHandler(this.mostrarActivosToolStripMenuItem_Click);
             // 
             // FrmEmpleado
             // 
@@ -517,5 +526,6 @@
         private System.Windows.Forms.ToolStripMenuItem actualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarleUnEmpleadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mostrarActivosToolStripMenuItem;
     }
 }

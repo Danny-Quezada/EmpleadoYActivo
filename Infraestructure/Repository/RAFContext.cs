@@ -27,7 +27,7 @@ namespace Infraestructure.Repository
 
         public Stream HeaderStream
         {
-            get => File.Open($"{fileName}.hd", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            get => File.Open($"{fileName}.hd", FileMode.OpenOrCreate, FileAccess.ReadWrite,FileShare.ReadWrite);
         }
 
         public Stream DataStream

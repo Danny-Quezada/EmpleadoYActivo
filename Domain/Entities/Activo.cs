@@ -20,5 +20,9 @@ namespace Domain.Entities
         public int IdEmpleado { get; set; }
         public EstadoActivo Estado { get; set; }
 
+        public override string ToString()
+        {
+            return $"{this.Id}";
+        }
     }
 }

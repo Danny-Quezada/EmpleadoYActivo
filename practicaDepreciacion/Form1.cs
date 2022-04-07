@@ -22,9 +22,9 @@ namespace practicaDepreciacion
         private IRegistroServices registroServices;
         private int Seleccionado = -1;
         
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
+        //[DllImport("kernel32.dll", SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //static extern bool AllocConsole();
         public Form1(IRegistroServices PregistroServices,IActivoServices ActivoServices,IEmpleadoServices CEmpleadoServices)
         {
             this.registroServices = PregistroServices;
@@ -37,7 +37,7 @@ namespace practicaDepreciacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            AllocConsole();
+            //AllocConsole();
             FillDgv();
             this.cmbEstado.Items.AddRange(Enum.GetValues(typeof(EstadoActivo)).Cast<object>().ToArray());
         }
@@ -181,6 +181,9 @@ namespace practicaDepreciacion
             if (Seleccionado != -1)
             {
                 activoServices.Delete(Seleccionado);
+                Registro registro = registroServices.RegistroEspecifico(x => x.Activo.Id == Seleccionado).First();
+                registro.Estado = EstadoRegistro.Inactivo;
+                registroServices.Actualizar(registro);
                 FillDgv();
                 Seleccionado = -1;
             }

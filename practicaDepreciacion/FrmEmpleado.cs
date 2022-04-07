@@ -172,5 +172,21 @@ namespace practicaDepreciacion
                 MessageBox.Show("Agrega activos para poder asignarlos a los empleados");
             }
         }
+
+        private void mostrarActivosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (registroServices.RegistroEspecifico(x => x.Empleado.Id == Seleccionado).Count > 0)
+            {
+                FrmMostrar frmMostrar = new FrmMostrar(Seleccionado);
+                frmMostrar.activoServices = ActivoServices;
+                frmMostrar.empleadoServices = EmpleadoServices;
+                frmMostrar.registroServices = registroServices;
+                frmMostrar.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No tiene activos");
+            }
+        }
     }
 }

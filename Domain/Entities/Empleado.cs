@@ -20,5 +20,9 @@ namespace Domain.Entities
         public string Email { get; set; }
         public EstadoEmpleado Estado { get; set; }
 
+        public override string ToString()
+        {
+            return $"{this.Id}";
+        }
     }
 }

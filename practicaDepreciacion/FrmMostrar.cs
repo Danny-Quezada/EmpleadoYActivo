@@ -18,7 +18,8 @@ namespace practicaDepreciacion
         public IEmpleadoServices empleadoServices { get; set; }
         public IActivoServices activoServices { get; set; }
         public IRegistroServices registroServices { get; set; }
-       
+        public int Opcion=-1;
+        
         private Activo activo;
         private Empleado Empleado;
         private int Seleccionado;
@@ -26,8 +27,12 @@ namespace practicaDepreciacion
         {
             
             InitializeComponent();
-       
 
+        }
+        public FrmMostrar(int opciones)
+        {
+            this.Opcion = opciones;
+            InitializeComponent();
         }
         public FrmMostrar(Empleado empleado)
         {
@@ -51,6 +56,11 @@ namespace practicaDepreciacion
 
         private void FrmMostrar_Load(object sender, EventArgs e)
         {
+            if (Opcion !=-1)
+            {
+
+                dgvMostrar.DataSource = registroServices.RegistroEspecifico(x=>x.Empleado.Id==Opcion);
+            }
             if (activo!=null)
             {
                 dgvMostrar.DataSource = empleadoServices.Read();
@@ -90,14 +100,14 @@ namespace practicaDepreciacion
                 
                 activo.Estado = Domain.Enum.EstadoActivo.Asignado;
                 activoServices.Update(activo);
-             
-                registroServices.Add(new Registro()
+                Registro registro = new Registro()
                 {
-                    Estado=Domain.Enum.EstadoRegistro.Activo,
-                    Empleado=empleado,
-                    Activo=activo,
+                    Estado = Domain.Enum.EstadoRegistro.Activo,
+                    Empleado = empleado,
+                    Activo = activo,
                     TiempoInicial = DateTime.Now.ToOADate()
-                });
+                };
+                registroServices.Add(registro);
                 btnSeleccionar.Visible = false;
             }
            else if (Empleado != null)
