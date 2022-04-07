@@ -77,11 +77,13 @@ namespace Infraestructure.Repository
                             {
                                 PropertyInfo[] infoClass = obj.GetType().GetProperties();
                                 object objectClass = Activator.CreateInstance(obj.GetType());
-                                foreach(PropertyInfo PInfoClass in infoClass)
+                                 foreach(PropertyInfo PInfoClass in infoClass)
                                 {
                                     if (PInfoClass.Name.Equals("Id", StringComparison.CurrentCultureIgnoreCase))
                                     {
-                                        bwData.Write(0);
+                                         object Id=PInfoClass.GetValue(obj,null);
+                                        Console.WriteLine(Id);
+                                        bwData.Write((int)Id);
                                         break;
                                     }
                                 }
@@ -401,6 +403,10 @@ namespace Infraestructure.Repository
                     pInfoClass.SetValue(Object, brData.GetValue<double>(TypeCode.Double));
                     continue;
                 }
+                else if (type == typeof(UInt64))
+                {
+                    pInfoClass.SetValue(Object, brData.GetValue<UInt64>(TypeCode.UInt64));
+                }
                 else if (type == typeof(decimal))
                 {
                     pInfoClass.SetValue(Object, brData.GetValue<decimal>(TypeCode.Decimal));
@@ -642,6 +648,10 @@ namespace Infraestructure.Repository
                         long posh = 8 + i * 4;
                         brHeader.BaseStream.Seek(posh, SeekOrigin.Begin);
                         index = brHeader.ReadInt32();
+                        if (brHeader.BaseStream.Length == 0)
+                        {
+                            return listT;
+                        }
                     }
 
                     T t = Get<T>(index);

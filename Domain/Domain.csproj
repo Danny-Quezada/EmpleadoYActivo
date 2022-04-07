@@ -51,7 +51,6 @@
     <Compile Include="Enum\EstadoEmpleado.cs" />
     <Compile Include="Enum\EstadoActivo.cs" />
     <Compile Include="Enum\EstadoRegistro.cs" />
-    <Compile Include="Interfaces\Expression.cs" />
     <Compile Include="Interfaces\IActivoModel.cs" />
     <Compile Include="Interfaces\IDepreciacionModel.cs" />
     <Compile Include="Interfaces\IEmpleadoModel.cs" />

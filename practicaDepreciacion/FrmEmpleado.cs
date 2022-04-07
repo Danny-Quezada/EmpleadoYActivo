@@ -107,6 +107,15 @@ namespace practicaDepreciacion
         {
             if (Seleccionado > 0)
             {
+                foreach(Registro registro in registroServices.RegistroEspecifico(x => x.Empleado.Id == Seleccionado))
+                {
+                    registro.Estado = EstadoRegistro.Inactivo;
+                    Activo Activoss = ActivoServices.GetById(registro.Activo.Id);
+                    Activoss.Estado = EstadoActivo.Disponible;
+                    ActivoServices.Update(Activoss);
+                    registroServices.Actualizar(registro);
+
+                }
                 EmpleadoServices.Delete(Seleccionado);
                
                 FillDgv();
@@ -155,6 +164,7 @@ namespace practicaDepreciacion
                 FrmMostrar frmMostrar = new FrmMostrar(EmpleadoServices.GetById(Seleccionado));
                 frmMostrar.empleadoServices = EmpleadoServices;
                 frmMostrar.activoServices = ActivoServices;
+                frmMostrar.registroServices = registroServices;
                 frmMostrar.ShowDialog();
             }
             else

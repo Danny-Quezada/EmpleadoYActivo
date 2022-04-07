@@ -1,5 +1,6 @@
 ﻿using AppCore.IServices;
 using Domain.Entities;
+using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,13 +79,11 @@ namespace practicaDepreciacion
                 {
                
                     activo.Estado = Domain.Enum.EstadoActivo.Disponible;
-                    registroServices.Add(new Registro()
-                    {
-                        Estado = Domain.Enum.EstadoRegistro.Activo,
-                        IdActivo = activo.Id,
-                        IdEmpleado = 0,
-                        TiempoInicial = DateTime.Now.ToFileTime()
-                    });
+                   
+                   Registro registro= registroServices.RegistroEspecifico(x => x.Activo.Id == activo.Id).First();
+                    registro.Estado = EstadoRegistro.Inactivo;
+                    registroServices.Actualizar(registro);
+                   
                 }
                 services.Update(activo);
                 this.Dispose();

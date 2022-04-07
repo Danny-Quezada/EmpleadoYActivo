@@ -10,9 +10,9 @@ namespace Domain.Entities
     public class Registro
     {
         public int Id { get; set; }
-        public int IdActivo { get; set; }
-        public int IdEmpleado { get; set; }
-        public long TiempoInicial { get; set; }
+        public Empleado Empleado { get; set; }
+        public Activo Activo { get; set; }
+        public double TiempoInicial { get; set; }
         public EstadoRegistro Estado{ get; set; }
     }
 }

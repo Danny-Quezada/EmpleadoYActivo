@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,10 @@ namespace practicaDepreciacion
         private IEmpleadoServices EmpleadoServices;
         private IRegistroServices registroServices;
         private int Seleccionado = -1;
+        
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
         public Form1(IRegistroServices PregistroServices,IActivoServices ActivoServices,IEmpleadoServices CEmpleadoServices)
         {
             this.registroServices = PregistroServices;
@@ -32,6 +37,7 @@ namespace practicaDepreciacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            AllocConsole();
             FillDgv();
             this.cmbEstado.Items.AddRange(Enum.GetValues(typeof(EstadoActivo)).Cast<object>().ToArray());
         }
@@ -257,6 +263,7 @@ namespace practicaDepreciacion
             FrmEmpleado empleado = new FrmEmpleado();
             empleado.EmpleadoServices = EmpleadoServices;
             empleado.ActivoServices = activoServices;
+            empleado.registroServices = registroServices;
             empleado.ShowDialog();
             FillDgv();
         }

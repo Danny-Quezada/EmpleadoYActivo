@@ -22,6 +22,7 @@ namespace Infraestructure.Repository
                 case TypeCode.Decimal: { return br.ReadDecimal(); }
                 case TypeCode.Double: { return br.ReadDouble(); }
                 case TypeCode.Single: { return br.ReadSingle(); }
+                case TypeCode.UInt64: { return br.ReadUInt64(); }
                 case TypeCode.Int16: { return br.ReadInt16(); }
                 case TypeCode.Int32: { return br.ReadInt32(); }
                 case TypeCode.Int64: { return br.ReadUInt64(); }

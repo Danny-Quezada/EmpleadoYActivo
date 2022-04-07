@@ -18,6 +18,11 @@ namespace AppCore.Services
             this.registroModel = model;
         }
 
+        public void Actualizar(Registro registro)
+        {
+            registroModel.Actualizar(registro);
+        }
+
         public List<Registro> RegistroEspecifico(Expression<Func<Registro, bool>> where)
         {
             return registroModel.RegistroEspecifico(where);

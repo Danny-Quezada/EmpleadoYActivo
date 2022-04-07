@@ -16,6 +16,12 @@ namespace Infraestructure.Repository
         {
             this.Context = new RAFContext("Registro", 30);
         }
+
+        public void Actualizar(Registro registro)
+        {
+            Context.Update<Registro>(registro);
+        }
+
         public void Add(Registro t)
         {
            Context.Create<Registro>(t);

@@ -12,6 +12,6 @@ namespace Domain.Interfaces
     {
         List<Registro> RegistroEspecifico(Expression<Func<Registro,bool>> where);
 
-
+        void Actualizar(Registro registro);
     }
 }

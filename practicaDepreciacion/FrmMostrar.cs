@@ -58,7 +58,7 @@ namespace practicaDepreciacion
             else if (Empleado!=null)
             {
                 dgvMostrar.DataSource = activoServices.Read();
-                this.dgvMostrar.Columns.RemoveAt(0);
+                //this.dgvMostrar.Columns.RemoveAt(0);
             }
         }
 
@@ -89,28 +89,28 @@ namespace practicaDepreciacion
                 Empleado empleado = empleadoServices.GetById(Seleccionado);
                 
                 activo.Estado = Domain.Enum.EstadoActivo.Asignado;
+                activoServices.Update(activo);
              
                 registroServices.Add(new Registro()
                 {
                     Estado=Domain.Enum.EstadoRegistro.Activo,
-                    IdActivo=activo.Id,
-                    IdEmpleado=empleado.Id,
-                    TiempoInicial = DateTime.Now.ToFileTime()
+                    Empleado=empleado,
+                    Activo=activo,
+                    TiempoInicial = DateTime.Now.ToOADate()
                 });
                 btnSeleccionar.Visible = false;
             }
            else if (Empleado != null)
            {
                 Activo activos = activoServices.GetById(Seleccionado);
-                    
                 activos.Estado = Domain.Enum.EstadoActivo.Asignado;
                 activoServices.Update(activos);
                 registroServices.Add(new Registro()
                 {
                     Estado=Domain.Enum.EstadoRegistro.Activo,
-                    IdActivo=activos.Id,
-                    IdEmpleado=Empleado.Id,
-                    TiempoInicial=DateTime.Now.ToFileTime()
+                    Activo=activos,
+                    Empleado=Empleado,
+                    TiempoInicial=DateTime.Now.ToOADate()
                 });
                 btnSeleccionar.Visible = false;
            }
